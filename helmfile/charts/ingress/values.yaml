@@ -1,12 +1,15 @@
 ingress:
   name: ingress-service
   replicaCount: 1
-  annotations: 
-    class: nginx
+  annotations:
+    # class: nginx
+    class: k8s.io/ingress-nginx
   hosts:
     - host: chart-example.local
-      paths: 
+      paths:
         - path: /
           backend:
-            serviceName: serviceName
-            servicePort: 8080
+            service:
+              name: serviceName
+              port:
+                number: 8080
